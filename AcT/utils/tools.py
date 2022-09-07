@@ -72,8 +72,8 @@ class CustomSchedule(tf.keras.optimizers.schedules.LearningRateSchedule):
         arg1 = torch.rsqrt(step)
         arg2 = step * (self.warmup_steps ** -1.5)
 
-        return tf.cond(step > self.decay_step, lambda: tf.constant(1e-4),
-                       lambda: tf.math.rsqrt(self.d_model) * tf.math.minimum(arg1, arg2))
+        return torch.where(step > self.decay_step, lambda: tf.FloatTensor(1e-4),
+                       lambda: torch.rsqrt(self.d_model) * torch.minimum(arg1, arg2))
 
 def get_angles(pos, i, d_model):
     angle_rates = 1 / np.power(10000, (2 * (i//2)) / np.float32(d_model))
