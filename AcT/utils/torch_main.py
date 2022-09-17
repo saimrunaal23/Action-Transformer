@@ -106,47 +106,33 @@ loss_log = []
 accuracy_log = []
 for epoch in range(epochs):
     print(f'Starting Epoch: {epoch + 1}...')
-
-    # We keep adding or accumulating our loss after each mini-batch in running_loss
     running_loss = 0.0
 
-    # We iterate through our trainloader iterator
-    # Each cycle is a minibatch
     for i, data in enumerate(trainloader, 0):
-        # get the inputs; data is a list of [inputs, labels]
         inputs, labels = data
 
-        # Clear the gradients before training by setting to zero
-        # Required for a fresh start
         optimizer.zero_grad()
 
-        # Forward -> backprop + optimize
-        outputs = net(inputs)  # Forward Propagation
-        loss = criterion(outputs, labels)  # Get Loss (quantify the difference between the results and predictions)
-        loss.backward()  # Back propagate to obtain the new gradients for all nodes
-        optimizer.step()  # Update the gradients/weights
+        outputs = net(inputs)
+        loss = criterion(outputs, labels)
+        loss.backward()
+        optimizer.step()
 
-        # Print Training statistics - Epoch/Iterations/Loss/Accurachy
         running_loss += loss.item()
-        if i % 100 == 99:  # show our loss every 50 mini-batches
-            correct = 0  # Initialize our variable to hold the count for the correct predictions
-            total = 0  # Initialize our variable to hold the count of the number of labels iterated
+        if i % 100 == 99:
+            correct = 0
+            total = 0
 
-            # We don't need gradients for validation, so wrap in
-            # no_grad to save memory
             with torch.no_grad():
-                # Iterate through the testloader iterator
                 for data in testloader:
                     images, labels = data
 
-                    # Foward propagate our test data batch through our model
                     outputs = net(images)
 
-                    # Get predictions from the maximum value
                     _, predicted = torch.max(outputs.data, 1)
-                    # Keep adding the label size or length to the total variable
+
                     total += labels.size(0)
-                    # Keep a running total of the number of predictions predicted correctly
+
                     correct += (predicted == labels).sum().item()
 
                 accuracy = 100 * correct / total
@@ -156,7 +142,6 @@ for epoch in range(epochs):
                     f'Epoch: {epoch_num}, Mini-Batches Completed: {(i + 1)}, Loss: {actual_loss:.3f}, Test Accuracy = {accuracy:.3f}%')
                 running_loss = 0.0
 
-    # Store training stats after each epoch
     epoch_log.append(epoch_num)
     loss_log.append(actual_loss)
     accuracy_log.append(accuracy)
