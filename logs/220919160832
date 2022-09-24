@@ -1,0 +1,30 @@
+----- Start Split 1 ----
+
+- Fold 1
+Accuracy Test: 0.8904778361320496 <> Balanced Accuracy: 0.8385037307178814
+
+---- Split 1 ----
+Accuracy mean: 0.8904778361320496
+Accuracy std: 0.0
+Balanced Accuracy mean: 0.8385037307178814
+Balanced Accuracy std: 0.0
+----- Start Split 2 ----
+
+- Fold 1
+Accuracy Test: 0.8814789056777954 <> Balanced Accuracy: 0.8162100858850341
+
+---- Split 2 ----
+Accuracy mean: 0.8814789056777954
+Accuracy std: 0.0
+Balanced Accuracy mean: 0.8162100858850341
+Balanced Accuracy std: 0.0
+----- Start Split 3 ----
+
+- Fold 1
+Accuracy Test: 0.8713634610176086 <> Balanced Accuracy: 0.8451885808532422
+
+---- Split 3 ----
+Accuracy mean: 0.8713634610176086
+Accuracy std: 0.0
+Balanced Accuracy mean: 0.8451885808532422
+Balanced Accuracy std: 0.0
