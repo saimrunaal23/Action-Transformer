@@ -1,4 +1,4 @@
-# Action Transformer for Human Activity Recogition
+# ACT
 Action Transformer for Human Activity Recognition (HAR) (https://arxiv.org/abs/2107.00606)
 
 
